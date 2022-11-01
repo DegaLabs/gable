@@ -9,6 +9,7 @@ You can run any Solidity smart contract in Gable AppChain, and use any Ethereum 
 Gable AppChain is a ready-to-use Appchain. To run the Appchain, you can firstly build it:
 
 ```
+git clone https://github.com/gablechain/gable.git --branch gable-testnet
 cargo build --release
 ```
 
