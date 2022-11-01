@@ -1,12 +1,12 @@
-# Octopus Appchain Template
+# Gable Appchain
 
-Minimalistic template for EVM-compatible Appchains. The Barnacle EVM is a Substrate-based EVM compatible network based on [Parity's Frontier pallet](https://github.com/paritytech/frontier).
+The Barnacle EVM-based Gable AppChain is a Substrate-based EVM compatible network based on [Parity's Frontier pallet](https://github.com/paritytech/frontier).
 
-You can run any Solidity smart contract in Barnacle EVM, and use any Ethereum development environments including Hardhat, Truffle, Remix, and many more.
+You can run any Solidity smart contract in Gable AppChain, and use any Ethereum development environments including Hardhat, Truffle, Remix, and many more.
 
-## Running the Barnacle EVM
+## Running the Gable AppChain
 
-The Barnacle EVM template is a ready-to-use Appchain. To run the Appchain, you can firstly build it:
+Gable AppChain is a ready-to-use Appchain. To run the Appchain, you can firstly build it:
 
 ```
 cargo build --release
@@ -15,7 +15,7 @@ cargo build --release
 Then run it:
 
 ```
-./target/release/appchain-barnacle --dev --enable-offchain-indexing true
+./target/release/gable-barnacle --dev --enable-offchain-indexing true
 ```
 
 Also, you can read these docs for more details:
@@ -23,9 +23,40 @@ Also, you can read these docs for more details:
 + about [`--dev`](https://docs.substrate.io/tutorials/get-started/build-local-blockchain/)
 + about [chain spec](https://docs.substrate.io/build/chain-spec/)
 
-## How Barnacle EVM Works
+### Running Gable AppChain Testnet
 
-Barnacle EVM doesn't have any custom Substrate pallets. The key to this template is in the `node/Cargo.toml`, where you have the `pallet-evm` and `pallet-ethereum` dependencies.
+If any one wishes to become a fullnode for Gable AppChain Testnet, you are invited to run with our genesis specification in ./resources/gable-testnet.json with the following command:
+
+```
+./target/release/gable-barnacle \
+  --base-path ./data/node \
+  --chain resources/gable-testnet.json \
+  --port 30333 \
+  --ws-port 9955 \
+  --rpc-port 9953 \
+  --validator \
+  --rpc-methods Unsafe \
+  --unsafe-ws-external \
+  --unsafe-rpc-external \
+  --rpc-cors all \
+  --name your-node-name \
+  --bootnodes /ip4/65.108.203.30/tcp/30333/p2p/12D3KooWGZuWhbKpueb1tt4Z8CGSQ7XcTajyUxzzKQiwNYpqzySk
+```
+
+### Running Gable AppChain Mainnet
+The genesis specification for Gable AppChain Mainnet will be updated as soon as Mainnet launches.
+
+## Connecting to the Gable AppChain Testnet
+As Gable AppChain is an EVM-compatible platform, any EVM-compatible wallet such as Metamask can be used to interact with Gable with the followings:
+* RPC: https://rpc1.gablechain.com/, https://rpc2.gablechain.com/
+* ChainId: 1281
+* Explorer: https://scan.gablechain.com/
+* Faucet: https://faucet.gablechain.com/
+* Simple Marketplace: https://marketplace.gablechain.com/
+
+## How Gable AppChain Works
+
+Gable AppChain is an EVM-compatible blockchain and doesn't have any custom Substrate pallets. The key to this template is in the `node/Cargo.toml`, where you have the `pallet-evm` and `pallet-ethereum` dependencies.
 
 You can modify the snippet below within the `node/src/chain_spec.rs` file to add your pre-funded accounts.
 
@@ -47,10 +78,6 @@ Note that there are two identical configurations in the file, but the difference
 Substrate will run an EVM smart contract platform, making it inherently interoperable with the Ethereum network. You can run any EVM-based smart contract within the EVM platform, like running it on an Ethereum Testnet or Mainnet.
 
 The Octopus Network team provides you with the basic documentation for the [Barnacle EVM](https://docs.oct.network/guides/appchain-evm.html#evm-compatible-appchain). You can visit our [examples to learn more](docs/example/README.md#barnacle-hardhat-project-template).
-
-## Connecting to the Barnacle EVM
-
-Unlike the default Substrate Websocket, to connect to the Barnacle EVM, you will connect to the `9933` port. If you run the Barnacle EVM locally, you can expect your RPC connection to be `http://127.0.0.1:9933`.
 
 ## Parity Frontier [Releases](https://github.com/paritytech/frontier#releases)
 
@@ -117,7 +144,7 @@ mapping, and other features.
 
 ## References
 
-We originally forked this template from the
+We forked this repository from [Barnable](https://github.com/octopus-network/barnacle), which originally forked from the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template). You
 can find more information on features on this template there, and more detailed usage on the
 [Substrate Developer Hub Tutorials](https://docs.substrate.io/tutorials/v3/) that use this heavily.
